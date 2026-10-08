@@ -1,0 +1,16 @@
+{
+  "name": "nita-discord-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for Nita — prefix .l/.l2/.deobfuscate, locked to one channel",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test test/*.test.cjs"
+  },
+  "dependencies": {
+    "axios": "^1.6.5",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.1",
+    "fengari": "^0.1.5"
+  }
+}

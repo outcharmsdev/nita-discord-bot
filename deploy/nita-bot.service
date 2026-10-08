@@ -1,0 +1,29 @@
+[Unit]
+Description=Nita Discord Bot
+Documentation=https://github.com/anomalyco/opencode
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nita
+Group=nita
+WorkingDirectory=/opt/nita-discord-bot
+ExecStart=/usr/bin/node /opt/nita-discord-bot/src/index.js
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+# Secrets come ONLY from /opt/nita-discord-bot/.env (mode 0600,
+# owner nita:nita). Never bake tokens into this unit or the repo.
+
+# Filesystem lockdown: code + modules stay read-only; the bot may write
+# only its session temp dir and its JSON data dir. Journal takes the logs
+# (no nohup.out anymore).
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/nita-discord-bot/temp /opt/nita-discord-bot/data
+
+[Install]
+WantedBy=multi-user.target
